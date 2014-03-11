@@ -25,6 +25,7 @@
 		setDisplay("0");
 	});
 
+
 	/*$(document).keyup(function (evt) {
 		switch(evt.keyCode) {
 			case 48:
