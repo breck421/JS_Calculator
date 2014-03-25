@@ -26,7 +26,7 @@
 	});
 
 
-	/*$(document).keyup(function (evt) {
+	$(document).keyup(function (evt) {
 		switch(evt.keyCode) {
 			case 48:
 			case 96:
@@ -70,7 +70,7 @@
 				break;
 			default:
 		}
-	});*/
+	});
 // END Bind events events
 
 
@@ -93,20 +93,3 @@
 		$('.calc-val').val(val);
 	};
 // END Display functions
-
-
-
-// add function
-function add() {
-
-};
-
-// subtract function
-function subtract() {
-
-};
-
-// calculate function
-function calculate() {
-
-};
