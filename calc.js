@@ -76,15 +76,25 @@
 		}
 	});
 
-	// evt is the object representing the event
+	// jQuery selector for .btn-opp class; creates a jQuery object
+	// listening for the click event on this jQuery object
+	// the .on() method takes 2 parameters
+	// param1: 'click'
+	// param2: call back function that passes the click event
+		// evt is the object representing the event
 	$('.btn-opp').on('click', function (evt) {
+		console.info('evt', evt);
 
-		// evt.currentTarget is the html element that fired the event
+		// evt an object with many properties and methods
+		// evt.currentTarget a property that represents the
+		// html element that fired the event
 		console.log('evt.currentTarget', evt.currentTarget);
+
+		// $btn is a variable for this jQuery selcetor
 		// $btn is the jQuery object of that html element
 		var $btn = $(evt.currentTarget);
 		console.log('$btn', $btn);
-		
+
 		// calling the jQuery data method on btn
 		// passing in an attribute of opp
 		// opperator is the string representing the data-opp attribute
@@ -92,7 +102,7 @@
 		var opperator = $btn.data('opp');
 
 		// switch()
-		// replaces an if else 
+		// replaces an if else
 		// takes any parameter and checks equality against multiple cases
 		// break terminates the switch
 		switch(opperator) {
