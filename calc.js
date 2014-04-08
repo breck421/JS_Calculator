@@ -76,17 +76,34 @@
 		}
 	});
 
+	// evt is the object representing the event
 	$('.btn-opp').on('click', function (evt) {
 
+		// evt.currentTarget is the html element that fired the event
+		console.log('evt.currentTarget', evt.currentTarget);
+		// $btn is the jQuery object of that html element
 		var $btn = $(evt.currentTarget);
+		console.log('$btn', $btn);
+		
+		// calling the jQuery data method on btn
+		// passing in an attribute of opp
+		// opperator is the string representing the data-opp attribute
+		// attributes describe html elements
 		var opperator = $btn.data('opp');
 
+		// switch()
+		// replaces an if else 
+		// takes any parameter and checks equality against multiple cases
+		// break terminates the switch
 		switch(opperator) {
 			case 'add':
 				add();
 				break;
 			case 'minus':
 				minus();
+				break;
+			case 'divide':
+				divide();
 				break;
 		};
 	});
@@ -100,6 +117,9 @@
 		alert('minus button clicked');
 	};
 
+	function divide () {
+		alert('divide button clicked');
+	};
 // Display functions
 	function updateTempValue(val) {
 		var stringValue = val.toString();
