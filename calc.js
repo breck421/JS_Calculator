@@ -9,6 +9,7 @@
 
 // Bind events events
 	$('.btn-num').on('click', function (evt) {
+
 		var $el = $(evt.currentTarget);
 		var num = $el.data('num');
 
@@ -82,6 +83,7 @@
 	// param1: 'click'
 	// param2: call back function that passes the click event
 		// evt is the object representing the event
+
 	$('.btn-opp').on('click', function (evt) {
 		console.info('evt', evt);
 
