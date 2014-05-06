@@ -117,21 +117,21 @@
 			case 'divide':
 				divide();
 				break;
-		};
+		}
 	});
 // END Bind events events
 
 	function add () {
 		alert('add button clicked');
-	};
+	}
 
 	function minus () {
 		alert('minus button clicked');
-	};
+	}
 
 	function divide () {
 		alert('divide button clicked');
-	};
+	}
 // Display functions
 	function updateTempValue(val) {
 		var stringValue = val.toString();
@@ -144,10 +144,10 @@
 		}
 
 		setDisplay(tempValue);
-	};
+	}
 
 	// Displays a string in the calculator output
 	function setDisplay(val) {
 		$('.calc-val').val(val);
-	};
+	}
 // END Display functions

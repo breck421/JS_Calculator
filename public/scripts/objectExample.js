@@ -1,4 +1,4 @@
-function makePerson(myName, myAge, favColor) {
+function makePerson(myName, myAge, myFavColor) {
 		var person = {};
 
 		if(myName) {
@@ -6,11 +6,23 @@ function makePerson(myName, myAge, favColor) {
 		}
 
 		if(myAge) {
-			person.age = myAge;
+
+			if(typeof(myAge) === 'number') {
+				person.age = myAge;
+			}
+			else {
+				person.age = NaN;
+			}
+
+		}
+
+		if(myFaveColor) {
+			person.favColor = myFavColor;
 		}
 
 		return person;
 	}
+
 
 	var jordan = makePerson('Jordan', 34);
 	jordan.spouse = makePerson("Andrea", 30);
@@ -32,11 +44,11 @@ function makePerson(myName, myAge, favColor) {
 			name: 'Andrea',
 			age: 30
 		}
-	}
+	};
 
-	typeof(jordan) //object
+	/*typeof(jordan) //object
 	typeof(jordan.name) //string
 	typeof(jordan.age) //number
 	typeof(jordan.children[3]) //undefined
 	typeof(jordan.spouse) //object
-	typeof(jordan.favColor) //undefined
+	typeof(jordan.favColor) //undefined*/

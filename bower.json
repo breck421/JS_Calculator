@@ -1,0 +1,20 @@
+{
+  "name": "JS_Calculator",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/breck421/JS_Calculator",
+  "authors": [
+    "Jordan <jordan.papaleo@clearcapital.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
