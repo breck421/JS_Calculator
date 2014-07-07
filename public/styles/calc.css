@@ -1,0 +1,16 @@
+.calculator {
+	margin: 20px auto 0 auto;
+	width: 240px;
+}
+.calc-val {
+	width: 200px;
+	margin-bottom: 19px;
+	text-align: right;
+}
+.btn {
+	width: 50px;
+	float: left;
+}
+.btn-wide {
+	width: 100px;
+}

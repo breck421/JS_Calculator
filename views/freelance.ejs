@@ -1,0 +1,91 @@
+<% include partials/page-start %>
+
+<div data-ng-app="RateCalc">
+	<h1>Freelance Rate Calculator</h1>
+	<p>Note that the discussion of pricing with your competitors is illegal in the US and Canada. It’s called price fixing, and it’s a federal offence.	This is a strategy and a tool for establishing your pricing</p>
+
+	<div data-ng-controller="AppController" class="row">
+		<div class="col-md-8">
+			<form role="form" name="rateForm" class="clearfix well well-open" data-ng-submit="caclulateRate(rateForm)">
+				<div class="form-group">
+					<label for="salary">
+						Yearly Salary<br />
+						<small>Find the yearly salary for your position.</small>
+					</label>
+
+					<div class="input-group">
+						<div class="input-group-addon">$</div>
+						<input class="form-control" id="salary" placeholder="100000" data-ng-model="rateForm.salary" required />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="billableHours">
+						Billable Hours<br />
+						<small>This means you need to subtract vacations, holidays, weekends, and the time you spend on sales. Essentially, if you aren’t doing direct work for a client, it you shouldn’t count it as "billable" time. Usually the number of billable hours will fall somewhere between 1200 and 1600 hours per year.</small>
+					</label>
+					<input class="form-control" id="billableHours" placeholder="1400" data-ng-model="rateForm.billableHours" required />
+				</div>
+
+				<div class="form-group">
+					<label for="overhead">
+						Overhead Ratio
+						<small>If you’re a freelancer, multiply it by 1.5. If you’re a Web design shop that rents or leases office space, multiply by 2. This covers overhead such as computer equipment, insurance, office space, health insurance, and other unavoidable expenses.</small>
+					</label>
+					<input class="form-control" id="overhead" placeholder="1.5" data-ng-model="rateForm.overhead" required />
+				</div>
+
+				<div class="form-group">
+					<label for="profit">
+						Percent Margin Profit<br />
+						<small>The percentage that business owners typically add as profit, is usually 15% to 25% of the total rate.</small>
+					</label>
+					<div class="input-group">
+						<div class="input-group-addon">%</div>
+						<input class="form-control" id="profit" placeholder="15" data-ng-model="rateForm.profit" required />
+					</div>
+				</div>
+
+				<button class="btn btn-default" type="submit">Calc</button>
+			</form>
+		</div>
+
+		<div class="col-md-4">
+			<div class="well">
+				<h1>
+					<small>Suggested Hourly Rate:</small><br />
+					{{ rate | currency : symbol }}
+				</h1>
+			</div>
+		</div>
+	</div>
+
+	<div>Information from <a href="http://www.sitepoint.com/web-work-should-charge/">SitePoint</a> in 2001</div>
+
+</div>
+
+<% include partials/general-scripts %>
+
+<script type="text/javascript">
+var RateCalc = angular.module('RateCalc', []);
+
+RateCalc.controller("AppController", ['$scope', function($scope) {
+	$scope.rate = 0;
+
+	$scope.caclulateRate = function(form) {
+		var billableHours = parseFloat(form.billableHours);
+		var salary = parseFloat(form.salary);
+		var profit = parseFloat(form.profit);
+		var overhead = parseFloat(form.overhead);
+
+		var rate = (((salary / billableHours) * overhead) * (profit / 10));
+
+		if(rate > 0) {
+			$scope.rate = rate;
+		}
+	};
+}]);
+
+</script>
+
+<% include partials/page-end %>
