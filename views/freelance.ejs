@@ -1,8 +1,9 @@
 <% include partials/page-start %>
+<% include partials/main-nav %>
 
 <div data-ng-app="RateCalc">
 	<h1>Freelance Rate Calculator</h1>
-	<p>Note that the discussion of pricing with your competitors is illegal in the US and Canada. It’s called price fixing, and it’s a federal offence.	This is a strategy and a tool for establishing your pricing</p>
+	<p>Note: The discussion of pricing with your competitors is illegal in the US and Canada. It’s called price fixing, and it’s a federal offence.	This is a strategy and a tool for establishing your pricing</p>
 
 	<div data-ng-controller="AppController" class="row">
 		<div class="col-md-8">
@@ -32,7 +33,7 @@
 						Overhead Ratio
 						<small>If you’re a freelancer, multiply it by 1.5. If you’re a Web design shop that rents or leases office space, multiply by 2. This covers overhead such as computer equipment, insurance, office space, health insurance, and other unavoidable expenses.</small>
 					</label>
-					<input class="form-control" id="overhead" placeholder="1.5" data-ng-model="rateForm.overhead" required />
+					<input class="form-control" id="overhead" placeholder="1.5" data-ng-model="rateForm.overhead"  />
 				</div>
 
 				<div class="form-group">
@@ -42,17 +43,18 @@
 					</label>
 					<div class="input-group">
 						<div class="input-group-addon">%</div>
-						<input class="form-control" id="profit" placeholder="15" data-ng-model="rateForm.profit" required />
+						<input class="form-control" id="profit" placeholder="15" data-ng-model="rateForm.profit"  />
 					</div>
 				</div>
 
-				<button class="btn btn-default" type="submit">Calc</button>
+				<button class="btn btn-primary" type="submit">Calc</button>
+				<button class="btn btn-link" type="reset" data-ng-click="resetForm(rateForm)">Reset</button>
 			</form>
 		</div>
 
 		<div class="col-md-4">
-			<div class="well">
-				<h1>
+			<div class="well" data-ng-class="{'well-success' : rate > 0}">
+				<h1 style="margin-top: 0; line-height: 1;">
 					<small>Suggested Hourly Rate:</small><br />
 					{{ rate | currency : symbol }}
 				</h1>
@@ -77,12 +79,30 @@ RateCalc.controller("AppController", ['$scope', function($scope) {
 		var salary = parseFloat(form.salary);
 		var profit = parseFloat(form.profit);
 		var overhead = parseFloat(form.overhead);
+		var rate = 0;
 
-		var rate = (((salary / billableHours) * overhead) * (profit / 10));
+		if(salary && billableHours && overhead && profit) {
+			rate = ((salary / billableHours) * overhead) * (1 + (profit / 100));
+		}
+		else if(salary && billableHours && overhead) {
+			rate = (salary / billableHours) * overhead;
+
+		}
+		else if(salary && billableHours && profit) {
+			rate = (salary / billableHours) * (1 + (profit / 100));
+		}
+		else {
+			rate = (salary / billableHours);
+		}
 
 		if(rate > 0) {
 			$scope.rate = rate;
 		}
+	};
+
+	$scope.resetForm = function(form) {
+		$scope.rate = 0;
+		form.$setPristine();
 	};
 }]);
 

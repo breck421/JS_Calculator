@@ -2,15 +2,25 @@
 	margin: 20px auto 0 auto;
 	width: 240px;
 }
-.calc-val {
+.calculator .calc-val {
 	width: 200px;
 	margin-bottom: 19px;
 	text-align: right;
 }
-.btn {
+.calculator .btn {
 	width: 50px;
 	float: left;
 }
-.btn-wide {
+.calculator .btn-wide {
 	width: 100px;
+}
+
+.well.well-open {
+	background-color: #FFFFFF;
+}
+
+.well.well-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
 }
