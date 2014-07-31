@@ -1,7 +1,6 @@
 // App variables
 	// variable for the final value
 	var finalValue = 0;
-
 	// temp variable for equations
 	var tempValue = "";
 // END App variables

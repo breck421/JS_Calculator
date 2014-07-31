@@ -1,7 +1,5 @@
 'use strict';
 
-var util = require('util');
-
 /*This runs a JS lint on the code */
 var jshintConfig = {
 	options: {
@@ -39,19 +37,62 @@ var htmlhintConfig = {
 };
 
 module.exports = function(grunt) {
-
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: jshintConfig,
-		htmlhint: htmlhintConfig
+		htmlhint: htmlhintConfig,
+		watch: {
+			js: {
+				files: [ 'public/scripts/*.js', 'Gruntfile.js' ],
+                tasks: ['jshint']
+			}
+		},
+        open: {
+            dev: {
+                path: "http://localhost:3000"
+            }
+        },
+        nodemon: {
+            dev: {
+                script: 'index.js'
+            }
+        },
+        concurrent: {
+            dev: [
+                'nodemon:dev',
+                'open:dev'
+            ]
+        }
 	});
+
 
 	grunt.loadNpmTasks('grunt-htmlhint');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
+	grunt.loadNpmTasks('grunt-open');
+	grunt.loadNpmTasks('grunt-nodemon');
+	grunt.loadNpmTasks('grunt-concurrent');
+
+    // Make Custom Tasks with grunt tasks
 	grunt.registerTask('test', [
 		'jshint',
 		'htmlhint'
 	]);
+
+    grunt.registerTask('compile', [
+		//'less'
+	]);
+
+    // Using our custom tasks
+    grunt.registerTask('build', [
+        'test',
+        'compile'
+    ]);
+
+    grunt.registerTask('dev', [
+        'build',
+        'concurrent'
+    ]);
 };
